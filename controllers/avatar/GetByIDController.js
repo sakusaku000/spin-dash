@@ -4,7 +4,9 @@ const download = require("image-downloader");
 
 module.exports = async (req, res) => {
     const userID = req.params.id;
-    console.log(userID);
+    const validIds = process.env.ID_WHITELIST.split(";");
+
+    if (!validIds.includes(userID)) return res.sendFile(`${srcDir}/default.png`);
 
     if (existsSync(`${srcDir}/avatars/${userID}.png`)) {
         console.log(`fetched from cache: ${userID}`)

@@ -1,3 +1,4 @@
 module.exports = (req, res) => {
-    return res.sendFile(`${srcDir}/default.png`);
+    const validIds = process.env.ID_WHITELIST.split(";");
+    return res.json(validIds);
 };
