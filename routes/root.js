@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-    res.redirect("https://95degrees.cafe");
+    return res.status(200).send()
 })
 
 module.exports = router;
