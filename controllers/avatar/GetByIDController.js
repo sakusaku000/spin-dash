@@ -4,7 +4,9 @@ const download = require("image-downloader");
 
 module.exports = async (req, res) => {
     const userID = req.params.id;
-    const validIds = process.env.ID_WHITELIST.split(";");
+
+    if (!existsSync(`${__dirname}/../../id.json`)) return res.sendFile(`${srcDir}/default.png`);
+    const validIds = require(`../../id.json`);
 
     if (!validIds.includes(userID)) return res.sendFile(`${srcDir}/default.png`);
 
